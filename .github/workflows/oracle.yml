@@ -37,3 +37,11 @@ jobs:
           ETHERSCAN_API_KEY:  ${{ secrets.ETHERSCAN_API_KEY }}
           CRYPTO_ADDRESS_ETH: ${{ secrets.CRYPTO_ADDRESS_ETH }}
         run: python oracle.py
+
+      - name: Register in Predator Hub (optional)
+        if: ${{ secrets.INFRA_HUB_TOKEN != '' }}
+        continue-on-error: true
+        env:
+          INFRA_HUB_TOKEN: ${{ secrets.INFRA_HUB_TOKEN }}
+          INFRA_HUB_URL: https://x402-api-wigc.onrender.com
+        run: python hub_agent.py
