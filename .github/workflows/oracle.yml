@@ -1,6 +1,13 @@
 name: Crypto Oracle Bot
 
 on:
+  schedule:
+    - cron: "0 */6 * * *"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/oracle.yml"
+      - "hub_agent.py"
   issues:
     types: [opened]
   issue_comment:
